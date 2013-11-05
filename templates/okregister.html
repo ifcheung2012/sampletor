@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript">
+        function countDown(secs,surl){
+            var jumpTo = document.getElementById('jumpTo');
+            jumpTo.innerHTML=secs;
+            if(--secs>0){
+                setTimeout("countDown("+secs+",'"+surl+"')",1000);
+            }
+            else{
+                location.href=surl;
+            }
+        }
+    </script>
+</head>
+<body>
+创建用户成功！您的用户名 :{{ escape(data[0]) }}  密码  :{{ data[1] }}
+<br>
+<span id="jumpTo">5</span>秒后返回 <a href="/">首页</a>
+<script type="text/javascript">countDown(5,'/');</script>
+</body>
+</html>

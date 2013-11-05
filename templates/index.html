@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="js/jquery-1.8.3.min.js" />
+    <script type="text/javascript">
+         $(function(){
+             $("#aclick").click(function(event){
+                 $.ajax({
+                     type: "PUT",
+                     url: "/register",
+                     data: {"user":$("#name").val(),"passwd":$("#passwd").val()}
+                 })
+             })
+         })
+    </script>
+</head>
+<body>
+<a href="/logout" > logout</a>
+<ul>
+
+    <li>
+        current_user is : {{ current_user }}
+    </li>
+
+</ul>
+<ul>
+    <li>Your Algorithms:</li>
+    {% if len(algorithms) %}
+        {%  for a in algorithms  %}
+            <li>
+                <a href="/cloud/analyse/algo/{{ a.id }}">{{ a.name }}</a>
+            </li>
+        {%  end   %}
+    {% else %}
+        <li>You have none permits.</li>
+    {% end %}
+</ul>
+</body>
+</html>
