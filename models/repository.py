@@ -119,18 +119,13 @@ class user_repository(BaseRepository):
         return usr.roles
 
     def getuserpermit(self,user):
-        usr = self.session.query(User).filter(User.id == user.id).one()
-        roles = self.getuserroles(user)
-        permitlist = []
-        for r in roles:
-            permit = self.session.query(RolePermit).filter(RolePermit.role == r.id)
-            permitlist.append(permit)
-        self.session.query(UserRole)\
-            .join(RolePermit,UserRole.roles)\
-            .join(PermitAlgo,RolePermit.permit)\
-            .join(Algorithm,PermitAlgo.algorithm)\
-            .filter(UserRole.user_id == user.id)
-        return permitlist
+        permitinfo = self.session.query(User.id,Permit.id,Permit.name) \
+            .join(UserRole) \
+            .join(Role) \
+            .join(RolePermit) \
+            .join(Permit) \
+            .filter(User.id == user.id).all()
+        return permitinfo
 
     def getuseralgorithms(self,user):
         algolist = self.session.query(User.id,Algorithm.id,Algorithm.name) \
@@ -151,6 +146,13 @@ class userrole_repository(BaseRepository):
 class role_repository(BaseRepository):
     pass
 
+class lottery_repository(BaseRepository):
+    def save(self, instance):
+        super(lottery_repository,self).save(instance)
+
+    def list(self):
+        return super(lottery_repository,self).list(Lotterysuperlotto)
+        # return self.session.query(Lotterysuperlotto).all()
 
 if __name__ == '__main__':
 

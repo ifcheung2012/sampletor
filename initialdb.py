@@ -12,7 +12,7 @@ def createdatabase():
 def dropdatabase():
     metadata.drop_all()
 
-def getdoublechromefromurl(issuefr="2003001",issueto="2013125"):
+def getdoublechromefromurl(issuefr="2003001",issueto="20150125"):
     '''
     return [('5', '2013125', ' 04 06 08 18 25 28', '16', '89', '9', '14', '39',
      '4', '24', '10', '1', '0', '0', '3:3', '1:5', '0:6', '1:1:4',
@@ -46,7 +46,7 @@ def getdoublechromefromurl(issuefr="2003001",issueto="2013125"):
 
     return patt
 
-def getsuperlotto(issuefr="2007001",issueto="2013125"):
+def getsuperlotto(issuefr="2007001",issueto="20150125"):
     '''
     return [('30', '2013125', ' 04 08 14 23 28 ', '04 08'),]   #tuple list
     '''

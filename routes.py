@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from handlers.User import *
+from handlers.LotteryHandler import *
 from handlers.Analyse import *
 from handlers.Longconnect import *
 
@@ -10,7 +11,8 @@ handlers= [
     (r"/register",RegisterHandler),
     (r"/long",longhandler),
     (r"/cloud/analyse/algo/([0-9]+)",AnalyseHandler),
-    (r"/checkuser",CheckUserHandler)
+    (r"/checkuser",CheckUserHandler),
+    (r"/lottery", LotteryHandler),
 ]
 
 if __name__ == '__main__':

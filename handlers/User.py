@@ -16,8 +16,9 @@ class UserHandler(Request_Handler):
     def get(self):
         rep = user_repository(self.db)
         usr = rep.getsinglebyname(self.current_user)
-        algorithms = rep.getuseralgorithms(usr)
-        self.render("index.html", data=self.current_user,algorithms=algorithms)
+        permitinfo = rep.getuserpermit(usr)
+        algorithminfo = rep.getuseralgorithms(usr)
+        self.render("index.html", data=self.current_user,permits= permitinfo,algorithms=algorithminfo)
 
     def post(self, *args, **kwargs):
         self.redirect("/")

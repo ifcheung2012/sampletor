@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relation
 from datetime import datetime
 
-engine = create_engine('mysql+mysqldb://root:123@127.0.0.1:3306/restful', echo=True,pool_recycle = -1)
+engine = create_engine('mysql+mysqldb://root:123@localhost:3306/ifcheung', echo=True,pool_recycle = -1)
 DeclarativeBase = declarative_base()
 metadata = DeclarativeBase.metadata
 metadata.bind = engine
