@@ -21,8 +21,6 @@ class RestHandler(RequestHandler):
         if id != "":
             id = json_decode(id)
             result = self._service.findById(id)
-
-
             if result is None:
                 return json_encode(None)
             else:

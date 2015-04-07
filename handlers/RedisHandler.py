@@ -12,10 +12,12 @@ import tornado.web
 
 import redis
 
-r = redis.Redis('localhost')
-class UserHandler(Request_Handler):
-    @authenticated
+
+class RedisHandler(Request_Handler):
+
     def get(self):
+        r = redis.Redis('127.0.0.1')
+        r.delete("lotterylst")
         lottrep = lottery_repository(self.db)
         lotteryinfo=lottrep.list()
         res = []
@@ -23,7 +25,9 @@ class UserHandler(Request_Handler):
             r.lpush("lotterylst",a.redball)
             r.lpush("lotterylst","+")
             r.lpush("lotterylst",a.blueball)
-        res = r.getrange("lotterylst",0,-1)
+
+        # r2 = redis.Redis('127.0.0.1')
+        res = r.lrange("lotterylst",0,-1)
         self.render("redisinfo.html",lottsuperlst=res)
 
     def post(self):

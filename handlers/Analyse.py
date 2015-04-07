@@ -10,6 +10,7 @@ import tornado.web
 
 class AnalyseHandler(Request_Handler):
     def get(self, *args, **kwargs):
+        print 'lotterycat_id','algorithms_list'
         pass
 
         # import tornado.httpclient

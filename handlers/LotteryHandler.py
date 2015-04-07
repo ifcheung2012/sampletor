@@ -19,15 +19,9 @@ class LotteryHandler(Request_Handler):
         res = []
         for a in lotteryinfo:
             res.append(a.redball)
-            res.append(('/r'))
             res.append(a.blueball)
-        # self.write(str(res))
-        self.render("/lotterylist.html",lottsuperlst=res)
-        # rep = user_repository(self.db)
-        # usr = rep.getsinglebyname(self.current_user)
-        # permitinfo = rep.getuserpermit(usr)
-        # algorithminfo = rep.getuseralgorithms(usr)
-        # self.render("index.html", data=self.current_user,permits= permitinfo,algorithms=algorithminfo)
+
+        self.render("lotterylist.html",lottsuperlst=res)
 
     def post(self, *args, **kwargs):
         self.redirect("/")

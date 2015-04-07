@@ -72,7 +72,8 @@ class LoginHandler(Request_Handler):
     def post(self, *args, **kwargs):
         rep = user_repository(self.db)
         name, role = rep.validateuser(self.param('name'), self.param('passwd'))
-        if name == None:
+        print name
+        if name is None:
             self.redirect("login.html")
         self.set_secure_cookie("user", name)
         usr = rep.getsinglebyname(self.param('name'))
