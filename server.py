@@ -11,6 +11,8 @@ from models.model import engine
 from routes import handlers
 import time
 
+#TODO remove some packages
+
 define("debug", default=False, type=bool)
 define("port", default=8007, help="run on the given port", type=int)
 
@@ -23,8 +25,8 @@ define("db_host", default="192.168.1.100", help="Database server", type=str)
 define("db_dbname", default="ifcheung", help="Database server", type=str)
 define("db_port", default=3306, help="Database server", type=int)
 
-
 class Application(tornado.web.Application):
+
     def __init__(self):
         settings = dict(
             debug=options.debug,
