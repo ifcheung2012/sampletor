@@ -15,7 +15,7 @@ class LotteryHandler(Request_Handler):
 
     def get(self):
         lottrep = lottery_repository(self.db)
-        lotteryinfo=lottrep.list()
+        lotteryinfo = lottrep.list()
         res = []
         for a in lotteryinfo:
             res.append(a.redball)

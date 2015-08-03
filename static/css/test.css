@@ -1,0 +1,100 @@
+.hover {
+    background-color: #bbee11
+}
+
+.odd {
+    background-color: #bbf;
+}
+
+.even {
+    background-color: #ffc;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
+}
+
+th,
+td {
+    border: 1px solid #b5d6e6;
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    height: 20px;
+}
+
+th {
+    background-color: Gray;
+}
+
+.test ul {
+    list-style: none;
+}
+
+.test li {
+    float: left;
+    width: 100px;
+    background: #CCC;
+    margin-left: 3px;
+    line-height: 30px;
+}
+
+.test a {
+    display: block;
+    text-align: center;
+    height: 30px;
+}
+
+.test a:link {
+    color: #666;
+    background: url(../favicon.ico) #CCC no-repeat 5px 12px;
+    text-decoration: none;
+}
+
+.test a:visited {
+    color: #666;
+    text-decoration: underline;
+}
+
+.test a:hover {
+    color: #FFF;
+    font-weight: bold;
+    text-decoration: none;
+    background: url(arrow_on.gif) #F00 no-repeat 5px 12px;
+}
+
+
+.tdiv{
+    box-sizing:border-box;
+    width:200px;
+
+    background-color: red;
+
+    border-left:10px solid #DDD;
+    border-right: 5px solid #ccc;
+    border-top:10px solid #eee ;
+    border-bottom: 5px solid #bbb;
+
+    margin-top: 150px  #bbb;
+    margin-left:150px  #ccc;
+    margin-right: 100px  #ddd;
+    margin-bottom: 100px  #eee;
+
+    padding: 200px #aaa;
+
+
+}
+
+
+
+
+
+
+
+
+

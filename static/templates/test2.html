@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title></title>
+	<script type="text/javascript">
+
+	/**方法一：基于dom属性
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func, i){
+			element.addEventListener(type, func, false);
+			element.setAttribute("i",i);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+		  var element = elements[i];   
+		  LIB_addEventListener(element, 'click', function(event) {   
+			alert('I was originally number ' + this.getAttribute("i")); 
+		  },i+1);
+		}
+	}	
+	*/
+	/**方法二：evel不推荐使用，虽然强大，但效率低
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func){
+			element.addEventListener(type, func, false);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+		  var element = elements[i];
+		  eval("var f=function(event){alert('I was originally number "+i+"');}");
+		  LIB_addEventListener(element, 'click', f);
+		}
+	}
+	*/
+	/**方法三：基于闭包
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func){
+			element.addEventListener(type, func, false);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+		  var element = elements[i];
+		  var fun = function(){
+		  	var j = i;
+		  	return function(event){alert('I was originally number '+j)};
+		  }
+		  LIB_addEventListener(element, 'click', fun());
+		}
+	}
+	*/
+	//方法四：基于event.target进行判断
+	/**
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func){
+			element.addEventListener(type, func, false);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+			var element = elements[i];
+			LIB_addEventListener(element, 'click', function(event){
+				for(var i = elements.length; i > 0; i--){
+					if(event.target === elements[i-1]){
+						alert(i);
+					}
+				}
+			});
+		}
+	}*/
+	//方法五：同方法三，都用的闭包
+	/**
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func){
+			element.addEventListener(type, func, false);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+			var element = elements[i];
+			LIB_addEventListener(element, 'click', (function(i){
+				 return function(e){
+					console.log(this)    //这里的this保存了处罚自身的dom
+					alert(i)
+				 };
+			})(i));
+		}
+	}*/
+	/**方法六：同方法三，都用的闭包
+		window.onload = function(){
+			var elements = document.getElementsByTagName("a");
+			var LIB_addEventListener = function(element, type, func){
+				element.addEventListener(type, func, false);
+			}			
+			for (var i=0, ilen=elements.length; i<ilen; i++) {   
+			  var element = elements[i];
+			  var fun = function(){
+				var j = i;
+				return function(event){alert('I was originally number '+j)};
+			  }
+			  LIB_addEventListener(element, 'click', fun());
+			}
+		}
+		*/
+	//方法七：同方法三，都用的闭包
+	window.onload = function(){
+		var elements = document.getElementsByTagName("a");
+		var LIB_addEventListener = function(element, type, func){
+			element.addEventListener(type, func, false);
+		}			
+		for (var i=0, ilen=elements.length; i<ilen; i++) {   
+		  var element = elements[i];
+		  LIB_addEventListener(element, 'click', (function(){
+			var j = i;
+			return function(event){alert('I was originally number '+j)};
+		  })());
+		}
+	}
+	
+	</script>
+</head>
+<body>  <h1>给每个a绑定一个click事件，让每次click弹出对应的index</h1>
+		<a href="#1">1</a>
+		<a href="#2">2</a>
+		<a href="#3">3</a>
+		<a href="#4">4</a>
+		<a href="#5">5</a>
+	
+</body>
+</html>

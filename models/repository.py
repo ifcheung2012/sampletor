@@ -151,8 +151,10 @@ class lottery_repository(BaseRepository):
         super(lottery_repository,self).save(instance)
 
     def list(self):
-        return super(lottery_repository,self).list(Lotterysuperlotto)
-        # return self.session.query(Lotterysuperlotto).all()
+        return super(lottery_repository,self).list(Lotterydoublechrom)
+
+
+
 
 if __name__ == '__main__':
 

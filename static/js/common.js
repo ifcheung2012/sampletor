@@ -5,6 +5,11 @@
  * Time: 下午1:17
  * To change this template use File | Settings | File Templates.
  */
+/**
+ * when page load,automatically
+ * @param  {notype} ) {               var name descriptions
+ * @return {type2}   description2
+ */
 $(document).ready(function () {
     var name = $('#name').val();
     var msg = "0";   /* username has been already existed! */
@@ -31,6 +36,9 @@ $(document).ready(function () {
             }
         }
     })
-
-
 });
+
+
+
+
+

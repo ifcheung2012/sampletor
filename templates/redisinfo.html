@@ -5,5 +5,17 @@
 </head>
 <body>
 
+<ul>
+    <li>lottery list:</li>
+    {% if len(lottsuperlst) %}
+{%  for a in lottsuperlst  %}
+<li>
+    {{ a }}
+</li>
+{%  end   %}
+{% else %}
+<li>EOF.</li>
+{% end %}
+</ul>
 </body>
 </html>

@@ -11,7 +11,7 @@ from models.model import engine
 from routes import handlers
 import time
 
-#TODO remove some packages
+# TODO remove some packages
 
 define("debug", default=False, type=bool)
 define("port", default=8007, help="run on the given port", type=int)
@@ -21,9 +21,10 @@ define("company_name", default="La compania", help="Company name", type=str)
 
 define("db_user", default="root", help="User for database", type=str)
 define("db_pass", default="123", help="User password for database", type=str)
-define("db_host", default="192.168.1.100", help="Database server", type=str)
+define("db_host", default="192.168.1.119", help="Database server", type=str)
 define("db_dbname", default="ifcheung", help="Database server", type=str)
 define("db_port", default=3306, help="Database server", type=int)
+
 
 class Application(tornado.web.Application):
 
@@ -51,7 +52,40 @@ def main():
     http_server.listen(options.port)
     tornado.ioloop.IOLoop.instance().start()
 
+import os,sys
+
+def killpidbyname(name):
+    kres = -1
+    cmd = "ps -e | grep %s | grep -v grep" % name
+    f = os.popen(cmd)
+    ls = f.readlines()
+   
+    if len(ls) == 0 :
+        print "server.py first starting...."
+        kres = 1
+    else:
+        for l in ls:
+            col = l.split()
+            pid = col[0]
+            print "pid is %s" % pid
+            kcmd = "kill -9 %d" % int(pid)
+            kres = os.system(kcmd)
+            
+            if kres == 0 : 
+                print "exec \"%s\" success!!" % kcmd
+    
+            else:
+                print "exec \"%s\" failed!!" % kcmd
+
+    return kres
 
 if __name__ == '__main__':
+    # kres = killpidbyname("server.py")
+    
+    # if kres == 0:
     print "Tornado Server Starting.... : http://127.0.0.1:" + str(options.port)
     main()
+    # elif kres == -1:
+    #     print "1st start server!"
+    # else:
+    #     print "restart failed!"
