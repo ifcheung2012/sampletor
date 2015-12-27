@@ -1,3 +1,4 @@
 MySQLdb=1.2.3
 sqlalchemy=0.6.9
 tornado=3.1.1
+beautifulsoup=3.2.1

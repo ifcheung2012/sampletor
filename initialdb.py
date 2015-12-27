@@ -51,9 +51,14 @@ def getsuperlotto(issuefr="2007001",issueto="20150125"):
     return [('30', '2013125', ' 04 08 14 23 28 ', '04 08'),]   #tuple list
     '''
     lottourl="http://zst.cjcp.com.cn/cjwdlt/view/dlteqzonghe-1-"+issuefr+"-"+issueto+"-1.html"
+
     f2=urllib.urlopen(lottourl)
     html2=f2.read()
-    lottopatt = re.findall("<td class='z_bg_05'>(?P<id>.*?)</td><td class='z_bg_05'>(?P<issue>.*?)</td><td class='WhiteBack RedFont' nowrap >(?P<redball>.*?)</td><td class='WhiteBack BlueFont'>(?P<blueball>.*?)</td>",html2,re.I)
+    # lottopatt = re.findall("<td class='z_bg_05'>(?P<id>.*?)</td><td class='z_bg_05'>(?P<issue>.*?)</td><td class='WhiteBack RedFont' nowrap >(?P<redball>.*?)</td><td class='WhiteBack BlueFont'>(?P<blueball>.*?)</td>",html2,re.I)
+    # lottopatt = re.findall("<td class=\"z_bg_05\">(?P<id>.*?)</td><td class=\"z_bg_05\">(?P<issue>.*?)</td><td class=\"WhiteBack RedFont\" nowrap=\"\">(?P<redball>.*?)</td><td class=\"WhiteBack BlueFont\">(?P<blueball>.*?)</td>",html2,re.I)
+    lottopatt = re.findall("< td class = \'WhiteBack RedFont\' nowrap >(?P<redball>.*?)< /td>",html2,re.I)
+    # print html2
+    print lottopatt
     return  lottopatt
 
 
@@ -77,13 +82,13 @@ def insertdata():
     lottanalysislist = [{'analysis':'analysis_text' + str(i)} for i in range(1,18)]
     lotterycatlist = [{'name':'superlotto'},{'name':'doublechrom'}]
 
-    lotterydoublechromlist = [{'lottcat_id':'2','issue':x[1],'redball':x[2][1:], \
-                               'redone':x[2][1:].split(' ')[0],'redtwo':x[2][1:].split(' ')[1], \
-                               'redthree':x[2][1:].split(' ')[2],'redfour':x[2][1:].split(' ')[3], \
-                               'redfive':x[2][1:].split(' ')[4], \
-                               'redsix':x[2][1:].split(' ')[5], \
-                               'blueball':x[3], \
-                               } for x in getdoublechromefromurl()]
+    # lotterydoublechromlist = [{'lottcat_id':'2','issue':x[1],'redball':x[2][1:], \
+    #                            'redone':x[2][1:].split(' ')[0],'redtwo':x[2][1:].split(' ')[1], \
+    #                            'redthree':x[2][1:].split(' ')[2],'redfour':x[2][1:].split(' ')[3], \
+    #                            'redfive':x[2][1:].split(' ')[4], \
+    #                            'redsix':x[2][1:].split(' ')[5], \
+    #                            'blueball':x[3], \
+    #                            } for x in getdoublechromefromurl()]
 
     lotterysuperlottolist = [{'lottcat_id':'1','issue':x[1],'redball':x[2][1:-1],\
                               'redone':x[2][1:].split(' ')[0],'redtwo':x[2][1:].split(' ')[1], \
@@ -156,9 +161,10 @@ def insertdata():
 
 
 def initialdatabase():
-    dropdatabase()
-    createdatabase()
-    insertdata()
+    # dropdatabase()
+    # createdatabase()
+    print(getsuperlotto(issuefr="2007001",issueto="20150125"))
+    # insertdata()
 
 
 if __name__ == '__main__':

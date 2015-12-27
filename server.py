@@ -21,7 +21,7 @@ define("company_name", default="La compania", help="Company name", type=str)
 
 define("db_user", default="root", help="User for database", type=str)
 define("db_pass", default="123", help="User password for database", type=str)
-define("db_host", default="192.168.1.119", help="Database server", type=str)
+define("db_host", default="localhost", help="Database server", type=str)
 define("db_dbname", default="ifcheung", help="Database server", type=str)
 define("db_port", default=3306, help="Database server", type=int)
 
